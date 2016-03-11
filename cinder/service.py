@@ -322,6 +322,11 @@ class Service(service.Service):
             if not getattr(self, 'model_disconnected', False):
                 self.model_disconnected = True
                 LOG.exception(_LE('DBError encountered: '))
+                
+        except Exception:
+            if not getattr(self, 'model_disconnected', False):
+                self.model_disconnected = True
+                LOG.exception(_LE('Exception encountered: '))
 
 
 class WSGIService(object):
